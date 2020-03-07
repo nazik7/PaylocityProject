@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/com.cucumber.features/paylocityLogin.feature",
+        features = "src/test/resources/com.cucumber.features/addEmployeeNoBenefit.feature",
         glue = "StepDefinitions",
         dryRun = false,
         monochrome = true

@@ -47,4 +47,16 @@ public class LoginStepDefs {
 
     }
 
+    @Then("provide invalid password {string}")
+    public void provide_invalid_password(String invalidPassword) {
+        loginPage.passwordInput.sendKeys(invalidPassword);
+    }
+
+    @Then("validate the invalid password for username")
+    public void validate_the_invalid_password_for_username() {
+        String expectedErrorMessage = "The password is incorrect for username testUser";
+        String actualErrorMessage = loginPage.errorMessage.getText();
+        Assert.assertTrue(actualErrorMessage.equals(expectedErrorMessage));
+    }
+
 }
