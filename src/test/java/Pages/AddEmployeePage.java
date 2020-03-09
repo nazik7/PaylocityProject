@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,6 +31,27 @@ public class AddEmployeePage {
     public WebElement submitButton;
 
     @FindBy(xpath = "//tbody//tr[last()]//td")
-    public List<WebElement> employeeDetails;
+    public List<WebElement> employeeDetailsLast;
+
+    @FindBy(xpath = "//tbody//tr[1]//td")
+    public List<WebElement> employeeDetailsFirst;
+
+    @FindBy (xpath = "//tbody//tr[last()]//span[@id='btnEdit']")
+    public WebElement editLastButton;
+
+    @FindBy(xpath = "//span[@id=‘btnDelete’]")
+    public WebElement deleteButton;
+
+    @FindBy(xpath = "//tbody//tr[last()]//td//span[@id='btnDelete']")
+    public WebElement deleteLastEmployeeBtn;
+
+    public List<String> getEmployeeDetails(List<WebElement> employeeDetails){
+        List<String> employeeDetails1=new ArrayList<>();
+        for (WebElement element : employeeDetails){
+            employeeDetails1.add(element.getText());
+        }
+        return employeeDetails1;
+    }
+
 
 }

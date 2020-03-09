@@ -35,7 +35,7 @@ public class AddEmployeeStepDefs {
 
     @Then("I should be able to enter firstName {string}")
     public void i_should_be_able_to_enter_firstName(String firstName) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         page.firstNameInput.sendKeys(firstName);
     }
 
@@ -62,7 +62,7 @@ public class AddEmployeeStepDefs {
     @Then("I should see the employee in the table {string} {string} {string}")
     public void i_should_see_the_employee_in_the_table(String firstname, String lastname, String dependents) {
         List<String> employeeDetails = new ArrayList<>();
-        for(WebElement element:page.employeeDetails){
+        for(WebElement element:page.employeeDetailsLast){
             employeeDetails.add(element.getText());
         }
         //Bug: last name and first name are replaced with each other
@@ -71,11 +71,10 @@ public class AddEmployeeStepDefs {
         Assert.assertEquals(dependents,employeeDetails.get(4));
     }
 
-    @Then("the benefit cost calculations are correct")
-    public void the_benefit_cost_calculations_are_correct() {
-        String actualBenefit = page.employeeDetails.get(6).getText();//34.62
-        String expectedBenefit = ""+1000/26;//38.46
-        Assert.assertTrue(actualBenefit.equals(expectedBenefit));
+    @Then("The user validates the benefit cost {string}")
+    public void the_user_validates_the_benefit_cost(String expectedBenefitCost) {
+        String actualBenefit = page.employeeDetailsLast.get(6).getText();
+        Assert.assertEquals(actualBenefit,expectedBenefitCost);
     }
 
 }
